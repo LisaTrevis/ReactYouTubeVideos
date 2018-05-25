@@ -26,12 +26,17 @@ class SearchBar extends Component {
 	render() {
 		// Pass event handler into the element that we want to watch for the event, and declare the event handler to trigger whenever the input box content is changed by the user::
 		return (
-			<div>
+			<div className="search-bar">
 				<input // A controlled component because it's receiving it's value from state:
-				value={this.state.term}
-				onChange={event => this.setState({ term: event.target.value })} />
+					value={this.state.term}
+					onChange={event => this.onInputChange(event.target.value)} />
 			</div>
 		);
+	}
+
+	onInputChange(term) {
+		this.setState({term});
+		this.props.onSearchTermChange(term);
 	}
 }
 
